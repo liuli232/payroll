@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class AddEmployeeTest {
+    //钟点工
     @Test
     void testAddHourlyEmployee() {
         int empId = 1001;
@@ -32,4 +33,60 @@ public class AddEmployeeTest {
         PaymentMethod pm = e.getPaymentMethod();
         assertTrue(pm instanceof HoldMethod);
     }
+    //月薪雇员
+    @Test
+    void testAddSalariedEmployee() {
+        int empId = 1001;
+        String name = "Bill";
+        String address = "No 391, Huanghe Rd.";
+        double salary = 3000;
+
+        Transaction t = new AddSalariedEmployeeTransaction(empId, name, address, salary);
+        t.execute();
+
+        Employee e = PayrollDatabase.getEmployee(empId);
+        assertNotNull(e);
+        assertEquals(empId, e.getEmpId());
+        assertEquals(name, e.getName());
+        assertEquals(address, e.getAddress());
+
+        PaymentClassification pc = e.getPaymentClassification();
+        assertTrue(pc instanceof SalariedClassification);
+        SalariedClassification hc = (SalariedClassification) pc;
+        assertEquals(salary, hc.Salary());
+
+        PaymentMethod pm = e.getPaymentMethod();
+        assertTrue(pm instanceof HoldMethod);
+
+    }
+    //销售经理
+    @Test
+    void testAddCommissionedEmployee() {
+        int empId = 1001;
+        String name = "Bill";
+        String address = "No 391, Huanghe Rd.";
+        double salary = 3000;
+        double commissionRate = 0.02;
+
+        Transaction t = new AddCommissionedEmployeeTransaction(empId, name, address, salary, commissionRate);
+        t.execute();
+
+        Employee e = PayrollDatabase.getEmployee(empId);
+        assertNotNull(e);
+        assertEquals(empId, e.getEmpId());
+        assertEquals(name, e.getName());
+        assertEquals(address, e.getAddress());
+
+        PaymentClassification pc = e.getPaymentClassification();
+        assertTrue(pc instanceof CommissionedClassification);
+        CommissionedClassification hc = (CommissionedClassification) pc;
+        assertEquals(salary, hc.Salary());
+        assertEquals(commissionRate, hc.CommissionRate());
+
+        PaymentMethod pm = e.getPaymentMethod();
+        assertTrue(pm instanceof HoldMethod);
+
+    }
+
+
 }
