@@ -1,10 +1,16 @@
-package payroll;
+package main.payroll.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import main.payroll.Transaction;
+import main.payroll.Employee;
+import main.payroll.NoSuchEmployeeExcption;
+import main.payroll.PayrollDatabase;
+import main.payroll.trans.AddHourlyEmployeeTransaction;
+import main.payroll.trans.DeleteEmployeeTransaction;
 
 public class DeleteEmployeeTest {
 

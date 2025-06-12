@@ -1,4 +1,7 @@
-package payroll;
+package main.payroll.trans;
+
+import main.payroll.classification.PaymentClassification;
+import main.payroll.classification.SalariedClassification;
 
 public class AddSalariedEmployeeTransaction extends AddEmployeeTransaction {
 

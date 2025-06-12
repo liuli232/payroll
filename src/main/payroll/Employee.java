@@ -1,4 +1,7 @@
-package payroll;
+package main.payroll;
+
+import main.payroll.classification.PaymentClassification;
+import main.payroll.method.PaymentMethod;
 
 public class Employee {
 

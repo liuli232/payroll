@@ -1,4 +1,4 @@
-package payroll;
+package main.payroll;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package payroll;
+package main.payroll.method;
 
 public interface PaymentMethod {
 

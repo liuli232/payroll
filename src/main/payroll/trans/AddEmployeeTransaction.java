@@ -1,4 +1,10 @@
-package payroll;
+package main.payroll.trans;
+
+import main.payroll.Employee;
+import main.payroll.PayrollDatabase;
+import main.payroll.Transaction;
+import main.payroll.classification.PaymentClassification;
+import main.payroll.method.HoldMethod;
 
 public abstract class AddEmployeeTransaction implements Transaction {
     

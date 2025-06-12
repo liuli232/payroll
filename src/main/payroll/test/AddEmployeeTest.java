@@ -1,4 +1,4 @@
-package payroll;
+package main.payroll.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,6 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import main.payroll.Transaction;
+import main.payroll.Employee;
+import main.payroll.PayrollDatabase;
+import main.payroll.classification.CommissionedClassification;
+import main.payroll.classification.HourlyClassification;
+import main.payroll.classification.PaymentClassification;
+import main.payroll.classification.SalariedClassification;
+import main.payroll.method.HoldMethod;
+import main.payroll.method.PaymentMethod;
+import main.payroll.trans.AddCommissionedEmployeeTransaction;
+import main.payroll.trans.AddHourlyEmployeeTransaction;
+import main.payroll.trans.AddSalariedEmployeeTransaction;
 
 public class AddEmployeeTest {
     //钟点工

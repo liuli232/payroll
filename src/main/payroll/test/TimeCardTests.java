@@ -1,10 +1,18 @@
-package payroll;
+package main.payroll.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import main.payroll.Transaction;
+import main.payroll.Employee;
+import main.payroll.PayrollDatabase;
+import main.payroll.TimeCard;
+import main.payroll.classification.HourlyClassification;
+import main.payroll.classification.PaymentClassification;
+import main.payroll.trans.AddHourlyEmployeeTransaction;
+import main.payroll.trans.TimeCardTransaction;
 
 public class TimeCardTests {
 

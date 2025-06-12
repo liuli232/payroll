@@ -1,7 +1,9 @@
-package payroll;
+package main.payroll.classification;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import main.payroll.TimeCard;
 
 public class HourlyClassification implements PaymentClassification {
     private double hourlyRate;

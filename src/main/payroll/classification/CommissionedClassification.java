@@ -1,4 +1,4 @@
-package payroll;
+package main.payroll.classification;
 
 public class CommissionedClassification implements PaymentClassification {
 

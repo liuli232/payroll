@@ -1,5 +1,11 @@
-package payroll;
+package main.payroll.trans;
 
+import main.payroll.Employee;
+import main.payroll.PayrollDatabase;
+import main.payroll.TimeCard;
+import main.payroll.Transaction;
+import main.payroll.classification.HourlyClassification;
+import main.payroll.classification.PaymentClassification;
 
 public class TimeCardTransaction implements Transaction {
 
