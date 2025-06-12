@@ -34,4 +34,33 @@ public class TimeCardTests {
         assertEquals(date, tc.getDate()); 
         assertEquals(hours, tc.getHours());
     }
+
+    @Test
+    void testAddNonTimeCardsToHourlyEmployee() {
+
+        int empId = 3002;
+        new AddHourlyEmployeeTransaction(empId,"Bill","Home",12.5).execute();
+    
+        String date1 = "2024-05-21";
+        double hours1 = 5.5;
+        new TimeCardTransaction(empId, date1, hours1).execute();
+    
+        String date2 = "2024-05-22";
+        double hours2 = 10;
+        new TimeCardTransaction(empId, date2, hours2).execute();
+    
+        Employee e = PayrollDatabase.getEmployee(empId);
+        assertNotNull(e);
+    
+        PaymentClassification pc = e.getPaymentClassification();
+        HourlyClassification hc = (HourlyClassification) pc;
+    
+        TimeCard tc1 = hc.getTimeCardOfDate(date1);
+        assertEquals(date1, tc1.getDate());
+        assertEquals(hours1, tc1.getHours());
+    
+        TimeCard tc2 = hc.getTimeCardOfDate(date2);
+        assertEquals(date2, tc2.getDate());
+        assertEquals(hours2, tc2.getHours());
+    }
 }
