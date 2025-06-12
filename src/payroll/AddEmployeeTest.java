@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class AddEmployeeTest {
+    //钟点工
     @Test
     void testAddHourlyEmployee() {
         int empId = 1001;
@@ -32,7 +33,7 @@ public class AddEmployeeTest {
         PaymentMethod pm = e.getPaymentMethod();
         assertTrue(pm instanceof HoldMethod);
     }
-
+    //月薪雇员
     @Test
     void testAddSalariedEmployee() {
         int empId = 1001;
@@ -58,7 +59,7 @@ public class AddEmployeeTest {
         assertTrue(pm instanceof HoldMethod);
 
     }
-
+    //销售经理
     @Test
     void testAddCommissionedEmployee() {
         int empId = 1001;
