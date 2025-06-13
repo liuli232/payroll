@@ -1,5 +1,7 @@
 package main.payroll.classification;
 
+import main.payroll.test.SalesReceipt;
+
 public class CommissionedClassification implements PaymentClassification {
 
     private double salary;
@@ -16,6 +18,11 @@ public class CommissionedClassification implements PaymentClassification {
 
     public double CommissionRate() {
         return commissionRate;
+    }
+
+    public SalesReceipt getSalesReceiptOfDate(String date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSalesReceiptOfDate'");
     }
 
 }
