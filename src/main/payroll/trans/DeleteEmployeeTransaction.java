@@ -1,9 +1,9 @@
 package main.payroll.trans;
 
 import main.payroll.Employee;
-import main.payroll.NoSuchEmployeeExcption;
 import main.payroll.PayrollDatabase;
 import main.payroll.Transaction;
+import main.payroll.exception.NoSuchEmployeeExcption;
 
 public class DeleteEmployeeTransaction implements Transaction {
 

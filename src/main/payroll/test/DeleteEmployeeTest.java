@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import main.payroll.Transaction;
+import main.payroll.exception.NoSuchEmployeeExcption;
 import main.payroll.Employee;
-import main.payroll.NoSuchEmployeeExcption;
 import main.payroll.PayrollDatabase;
 import main.payroll.trans.AddHourlyEmployeeTransaction;
 import main.payroll.trans.DeleteEmployeeTransaction;

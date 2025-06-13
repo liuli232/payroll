@@ -2,6 +2,7 @@ package main.payroll.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,10 @@ import main.payroll.PayrollDatabase;
 import main.payroll.TimeCard;
 import main.payroll.classification.HourlyClassification;
 import main.payroll.classification.PaymentClassification;
+import main.payroll.exception.NotHourlyClassificationException;
+import main.payroll.trans.AddCommissionedEmployeeTransaction;
 import main.payroll.trans.AddHourlyEmployeeTransaction;
+import main.payroll.trans.AddSalariedEmployeeTransaction;
 import main.payroll.trans.TimeCardTransaction;
 
 public class TimeCardTests {
@@ -70,5 +74,25 @@ public class TimeCardTests {
         TimeCard tc2 = hc.getTimeCardOfDate(date2);
         assertEquals(date2, tc2.getDate());
         assertEquals(hours2, tc2.getHours());
+    }
+
+    // 测试 3：为判断底层登记时间卡，应该跳出异常
+    @Test
+    void testAddTimeCardToSalariedEmployee() {
+        int empId = 3003;
+        new AddSalariedEmployeeTransaction(empId, "Bill", "Home", 3000.0).execute();
+        assertThrows(NotHourlyClassificationException.class, () -> {
+        new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
+    });
+}
+
+// 测试 4：为销售经理登记时间卡，应该跳出异常
+    @Test
+    void testAddTimeCardToCommissionedEmployee() {
+        int empId = 3004;
+        new AddCommissionedEmployeeTransaction(empId, "Bill", "Home", 2000.0, 0.02).execute();
+        assertThrows(NotHourlyClassificationException.class, () -> {
+        new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
+        });
     }
 }

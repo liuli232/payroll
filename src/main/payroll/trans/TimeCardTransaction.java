@@ -6,6 +6,7 @@ import main.payroll.TimeCard;
 import main.payroll.Transaction;
 import main.payroll.classification.HourlyClassification;
 import main.payroll.classification.PaymentClassification;
+import main.payroll.exception.NotHourlyClassificationException;
 
 public class TimeCardTransaction implements Transaction {
 
@@ -24,9 +25,13 @@ public class TimeCardTransaction implements Transaction {
     public void execute() {
         Employee e = PayrollDatabase.getEmployee(empId);
         PaymentClassification pc = e.getPaymentClassification();
+        if (pc instanceof HourlyClassification){
         HourlyClassification hc = (HourlyClassification) pc;
         TimeCard tc = new TimeCard(date, hours);
         hc.addTimeCard(tc);
+        } else {
+            throw new NotHourlyClassificationException();
+        }
     }
 
 }
