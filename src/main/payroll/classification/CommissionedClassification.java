@@ -25,4 +25,9 @@ public class CommissionedClassification implements PaymentClassification {
         throw new UnsupportedOperationException("Unimplemented method 'getSalesReceiptOfDate'");
     }
 
+    public void addSalesReceipt(SalesReceipt sr) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addSalesReceipt'");
+    }
+
 }

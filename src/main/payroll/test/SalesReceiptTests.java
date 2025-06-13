@@ -1,5 +1,6 @@
 package main.payroll.test;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +13,7 @@ import main.payroll.PayrollDatabase;
 import main.payroll.Transaction;
 import main.payroll.classification.CommissionedClassification;
 import main.payroll.classification.PaymentClassification;
+import main.payroll.exception.NoSuchEmployeeException;
 import main.payroll.exception.NotCommissionedClassificationException;
 import main.payroll.trans.AddCommissionedEmployeeTransaction;
 import main.payroll.trans.AddHourlyEmployeeTransaction;
@@ -84,6 +86,16 @@ public class SalesReceiptTests {
         new AddSalariedEmployeeTransaction(empId, "Bill", "Home", 3000.0).execute();
         assertThrows(NotCommissionedClassificationException.class, () -> {
             new SalesReceiptTransaction(empId, "2024-05-21", 1000.0).execute();
+        });
+    }
+    // 为不存在的雇员登记销售凭条，应该抛出异常
+    @Test
+    void testAddSalesReceiptToEmployeeNotExists(){
+        int empId = 400500;
+        assertNull(PayrollDatabase.getEmployee(empId));
+
+        assertThrows(NoSuchEmployeeException.class, () -> {
+        new SalesReceiptTransaction(empId, "2024-05-21", 1000.0).execute();
         });
     }
 
