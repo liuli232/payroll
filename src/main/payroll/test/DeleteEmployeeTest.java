@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import main.payroll.Transaction;
-import main.payroll.exception.NoSuchEmployeeExcption;
+import main.payroll.exception.NoSuchEmployeeException;
 import main.payroll.Employee;
 import main.payroll.PayrollDatabase;
 import main.payroll.trans.AddHourlyEmployeeTransaction;
@@ -35,7 +35,7 @@ public class DeleteEmployeeTest {
         assertNull(PayrollDatabase.getEmployee(empId));
 
         Transaction t = new DeleteEmployeeTransaction(empId);
-        assertThrows(NoSuchEmployeeExcption.class, () -> {
+        assertThrows(NoSuchEmployeeException.class, () -> {
             t.execute();
         }) ;
     }

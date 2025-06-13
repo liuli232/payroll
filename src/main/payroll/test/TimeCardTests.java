@@ -2,6 +2,7 @@ package main.payroll.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,6 +13,7 @@ import main.payroll.PayrollDatabase;
 import main.payroll.TimeCard;
 import main.payroll.classification.HourlyClassification;
 import main.payroll.classification.PaymentClassification;
+import main.payroll.exception.NoSuchEmployeeException;
 import main.payroll.exception.NotHourlyClassificationException;
 import main.payroll.trans.AddCommissionedEmployeeTransaction;
 import main.payroll.trans.AddHourlyEmployeeTransaction;
@@ -82,11 +84,11 @@ public class TimeCardTests {
         int empId = 3003;
         new AddSalariedEmployeeTransaction(empId, "Bill", "Home", 3000.0).execute();
         assertThrows(NotHourlyClassificationException.class, () -> {
-        new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
-    });
+            new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
+        });
 }
 
-// 测试 4：为销售经理登记时间卡，应该跳出异常
+    // 测试 4：为销售经理登记时间卡，应该跳出异常
     @Test
     void testAddTimeCardToCommissionedEmployee() {
         int empId = 3004;
@@ -95,4 +97,17 @@ public class TimeCardTests {
         new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
         });
     }
+
+    // 测试5：为不存在的虚拟登记时间卡，应该跳出异常
+    @Test
+    void testAddTimeCardToEmployeeNotExists() {
+        int empId = 300500;
+        assertNull(PayrollDatabase.getEmployee(empId));
+
+        assertThrows(NoSuchEmployeeException.class, () -> {
+            new TimeCardTransaction(empId, "2024-05-21", 5.5).execute();
+        });
+    }
+
+
 }

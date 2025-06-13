@@ -3,7 +3,7 @@ package main.payroll.trans;
 import main.payroll.Employee;
 import main.payroll.PayrollDatabase;
 import main.payroll.Transaction;
-import main.payroll.exception.NoSuchEmployeeExcption;
+import main.payroll.exception.NoSuchEmployeeException;
 
 public class DeleteEmployeeTransaction implements Transaction {
 
@@ -19,7 +19,7 @@ public class DeleteEmployeeTransaction implements Transaction {
         if (e != null) {
             PayrollDatabase.deleteEmployee(empId);
         } else {
-            throw new NoSuchEmployeeExcption();
+            throw new NoSuchEmployeeException();
         }
     }
 
